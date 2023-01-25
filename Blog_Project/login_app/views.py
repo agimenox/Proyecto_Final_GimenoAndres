@@ -53,7 +53,7 @@ def user_register(request):
 def home(request):
     return render(
         request=request,
-        template_name='panel.html',
+        template_name='home.html',
     )
 
 
