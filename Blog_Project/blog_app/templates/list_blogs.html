@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+{% block content %}
+{% for blog in object_list %}
+<tr>
+  {{ blog.title }}<br>
+  {{ blog.subtitle }}<br>
+  {{ blog.author }}<br>
+  {{ blog.body }}<br>
+  {{ blog.date }}<br>
+  {{ blog.image }}<br>
+  {{ blog.subtitle }}<br>
+
+  <img src="{{ blog.image.url }}" width="200" height="200">
+</tr>
+{% endfor %}
+{% endblock content %}
