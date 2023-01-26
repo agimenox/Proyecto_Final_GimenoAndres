@@ -23,3 +23,9 @@ def list_blogs(request):
 class BlogListView(ListView):
     model = Blog
     template_name = 'list_blogs.html'
+
+class BlogUpdateView(UpdateView):
+    model = Blog
+    fields = ['title', 'subtitle','body','author','date','image','category']
+    success_url = reverse_lazy('list_blogs')
+    template_name = "edit_blog.html"

@@ -11,6 +11,7 @@
   {{ blog.subtitle }}<br>
 
   <img src="{{ blog.image.url }}" width="200" height="200">
+  <a href="{% url 'edit_blog' blog.id %}">Edit</a>
 </tr>
 {% endfor %}
 {% endblock content %}
