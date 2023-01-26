@@ -56,6 +56,11 @@ def home(request):
         template_name='home.html',
     )
 
+def about(request):
+    return render(
+        request=request,
+        template_name='about.html',
+    )
 
 class CustomLogoutView(LogoutView):
     template_name = 'logout.html'
