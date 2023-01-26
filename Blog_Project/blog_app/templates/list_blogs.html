@@ -12,6 +12,7 @@
 
   <img src="{{ blog.image.url }}" width="200" height="200">
   <a href="{% url 'edit_blog' blog.id %}">Edit</a>
+  <a href="{% url 'delete_blog' blog.id %}">Delete</a>
 </tr>
 {% endfor %}
 {% endblock content %}

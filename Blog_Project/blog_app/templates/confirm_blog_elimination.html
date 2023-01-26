@@ -1,0 +1,11 @@
+{% extends "home.html" %}
+
+{% block content %}
+<span>You going to delete {{object}}</span>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Confirm" />
+</form>
+{% endblock content %}
