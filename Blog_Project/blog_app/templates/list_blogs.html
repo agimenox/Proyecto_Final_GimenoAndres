@@ -1,18 +1,37 @@
 {% extends "home.html" %}
+{%load static%}
 {% block content %}
+
+
+{% if object_list|length %}
+
+
 {% for blog in object_list %}
 <tr>
   {{ blog.title }}<br>
-  {{ blog.subtitle }}<br>
   {{ blog.author }}<br>
-  {{ blog.body }}<br>
   {{ blog.date }}<br>
-  {{ blog.image }}<br>
-  {{ blog.subtitle }}<br>
 
   <img src="{{ blog.image.url }}" width="200" height="200">
-  <a href="{% url 'edit_blog' blog.id %}">Edit</a>
-  <a href="{% url 'delete_blog' blog.id %}">Delete</a>
+  <br>
+  <a href="{% url 'edit_blog' blog.id %}">Editar</a>
+  <a href="{% url 'delete_blog' blog.id %}">Borrar</a>
+  <a href="{% url 'detail_blog' blog.id %}">Leer mas...</a>
+  <br><br><br>
 </tr>
+
 {% endfor %}
+
+{% else %}
+<center>
+<div>
+  <h2>NO HAY ELEMENTOS PARA MOSTRAR</h2>
+</div>
+</center>
+<div class="text-center">
+  <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+      src="{% static 'img/jhontravolta.gif' %}" alt="...">
+</div>
+
+{% endif %}
 {% endblock content %}

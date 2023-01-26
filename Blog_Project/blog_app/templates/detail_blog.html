@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+
+<h2><strong>Group Name: </strong> {{object.title}}</h4>
+<h3><strong>Group Name: </strong> {{object.subtitle}}</h4>
+<p>{{object.body}}</p>
+<h2>{{object.author}}</h2>
+<h2>{{object.date}}</h2>
+<h2>{{object.category}}</h2>
+<img src="{{ blog.image.url }}">
+<br>
+<a href="{% url 'list_blogs' %}">Back</a>
+
+{% endblock content %}
