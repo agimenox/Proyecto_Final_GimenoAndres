@@ -1,6 +1,6 @@
 
 from django import forms
-from models import Blog
+from blog_app.models import Blog
 
 
 class BlogCreateForm(forms.ModelForm):

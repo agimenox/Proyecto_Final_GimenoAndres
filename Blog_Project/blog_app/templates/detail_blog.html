@@ -12,5 +12,6 @@
 <img src="{{ blog.image.url }}">
 <br>
 <a href="{% url 'list_blogs' %}">Back</a>
+<a href="{% url 'change_image' blog.id %}">Cambiar Foto...</a>
 
 {% endblock content %}
