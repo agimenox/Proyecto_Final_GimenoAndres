@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+{%load static%}
+{% block content %}
+{% for blog in form %}
+<tr>
+  {{ blog.title }}<br>
+  {{ blog.author }}<br>
+  {{ blog.date }}<br>
+
+  <img src="{{ blog.image.url }}" width="200" height="200">
+  <br>
+  {% if user.is_staff %}
+  <a href="{% url 'edit_blog' blog.id %}">Editar</a>
+  <a href="{% url 'delete_blog' blog.id %}">Borrar</a>
+  {% endif %}
+  <a href="{% url 'detail_blog' blog.id %}">Leer mas...</a>
+  <br><br><br>
+</tr>
+
+{% endfor %}
+{% endblock content %}

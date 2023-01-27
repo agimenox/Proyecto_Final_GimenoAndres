@@ -38,3 +38,12 @@ class BlogDetailView(LoginRequiredMixin,DetailView):
     model = Blog
     success_url = reverse_lazy('list_blogs')
     template_name = "detail_blog.html"
+
+def get_own_blog(request,id):
+    form = Blog.objects.filter(owner_id=id)
+    return render(
+        request=request,
+        template_name='list_own_blogs.html',
+        context={'form': form},
+    )
+
