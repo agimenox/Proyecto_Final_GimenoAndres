@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
 
 # Create your models here.
 class Blog(models.Model):
@@ -9,6 +12,10 @@ class Blog(models.Model):
     date = models.DateField()
     image = models.ImageField(upload_to='blogs', null=True, blank=True)
     category = models.CharField(max_length=64,null=True)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f'Imagen del Blog: {self.title}'
+
+
+# Create your models here.
