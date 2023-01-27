@@ -9,10 +9,10 @@
 
   <img src="{{ blog.image.url }}" width="200" height="200">
   <br>
-  {% if user.is_staff %}
+
   <a href="{% url 'edit_blog' blog.id %}">Editar</a>
   <a href="{% url 'delete_blog' blog.id %}">Borrar</a>
-  {% endif %}
+
   <a href="{% url 'detail_blog' blog.id %}">Leer mas...</a>
   <br><br><br>
 </tr>
