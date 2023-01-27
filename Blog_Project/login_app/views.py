@@ -33,7 +33,7 @@ def login_view(request):
         context={'form': form},
     )
 
-
+@login_required
 def user_register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)

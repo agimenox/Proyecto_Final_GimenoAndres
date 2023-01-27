@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Registro de Usuario</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -30,6 +30,7 @@
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
+                <center>
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
@@ -43,15 +44,22 @@
                               <input type="submit" value="Sing Up"/>
                             </form>
                             <hr>
+                            {% if user.is_authenticated %}
+                            <div class="text-center">
+                                <a class="small" href="{% url 'home' %}"">VOLVER</a>
+                            </div>
+                            {% else %}
                             <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="{% url 'login' %}">Already have an account? Login!</a>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+                </center>
             </div>
         </div>
 
