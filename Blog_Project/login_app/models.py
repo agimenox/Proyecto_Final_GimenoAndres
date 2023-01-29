@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class Avatar(models.Model):
     # Va a estar asociado con el User. Avatar es una tabla anexa de User
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
@@ -10,3 +11,5 @@ class Avatar(models.Model):
 
     def __str__(self):
         return f"Imagen de: {self.user}"
+
+    

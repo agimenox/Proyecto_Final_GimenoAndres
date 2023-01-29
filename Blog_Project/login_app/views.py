@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
+from login_app.models import Avatar
 
 # Create your views here.
 
@@ -77,10 +78,12 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
-    
+     
+
+'''
 def add_avatar(request):
     if request.method == "POST":
-        form = AvatarForm(request.POST, request.FILES, instance=request.user) # Aquí me llega toda la info del form html
+        form = AvatarForm(request.POST, request.FILES) # Aquí me llega toda la info del form html
 
         if form.is_valid():
             avatar = form.save()
@@ -95,4 +98,17 @@ def add_avatar(request):
         template_name='avatar_form.html',
         context={'form': form},
     )
+'''
+
+def add_avatar(request):
+    if request.method == 'POST':
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            avatar = form.save()
+            avatar.user = request.user
+            form.save()
+            return redirect('home')
+    else:
+        form = AvatarForm()
+    return render(request, 'avatar_form.html', {'form': form})
 
