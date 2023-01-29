@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.urls import reverse, reverse_lazy
-from login_app.forms import UserRegisterForm, UserUpdateForm
+from login_app.forms import UserRegisterForm, UserUpdateForm, AvatarForm
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -77,3 +77,22 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+    
+def add_avatar(request):
+    if request.method == "POST":
+        form = AvatarForm(request.POST, request.FILES, instance=request.user) # Aquí me llega toda la info del form html
+
+        if form.is_valid():
+            avatar = form.save()
+            avatar.user = request.user
+            avatar.save()
+            sucess_url = reverse('home')
+            return redirect(sucess_url)
+    else:  # GET
+        form = AvatarForm()
+    return render(
+        request=request,
+        template_name='avatar_form.html',
+        context={'form': form},
+    )
+

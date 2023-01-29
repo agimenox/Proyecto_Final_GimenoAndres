@@ -4,34 +4,57 @@
 
 
 {% if object_list|length %}
+
+<div class="row">
 {% for blog in object_list %}
-<tr>
-  {{ blog.title }}<br>
-  {{ blog.author }}<br>
-  {{ blog.date }}<br>
-
-  <img src="{{ blog.image.url }}" width="200" height="200">
-  <br>
-  {% if user.is_staff %}
-  <a href="{% url 'edit_blog' blog.id %}">Editar</a>
-  <a href="{% url 'delete_blog' blog.id %}">Borrar</a>
-  {% endif %}
-  <a href="{% url 'detail_blog' blog.id %}">Leer mas...</a>
-  <br><br><br>
-</tr>
-
+  <div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div
+        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ blog.title }}</h6>
+        <div class="btn-group">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Mas
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item active" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+      <div class="card shadow mb-4">
+        {{ blog.title }}<br>
+        {{ blog.author }}<br>
+        {{ blog.date }}<br>
+        <img src="{{ blog.image.url }}" width="200" height="200">
+      </div>
+      {% if user.is_staff %}
+      <a href="{% url 'edit_blog' blog.id %}">Editar</a>
+      <a href="{% url 'delete_blog' blog.id %}">Borrar</a>
+      {% endif %}
+      <a href="{% url 'detail_blog' blog.id %}">Leer mas...</a>
+      </div>
+    </div>
 {% endfor %}
-
+</div>
 {% else %}
 <center>
-<div>
-  <h2>NO HAY ENTRADAS AUN</h2>
-</div>
+  <div>
+    <h2>NO HAY ENTRADAS AUN</h2>
+  </div>
 </center>
-<div class="text-center">
-  <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-      src="{% static 'img/jhontravolta.gif' %}" alt="...">
-</div>
+  <div class="text-center">
+    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+        src="{% static 'img/jhontravolta.gif' %}" alt="...">
+  </div>
 
 {% endif %}
 {% endblock content %}
+
