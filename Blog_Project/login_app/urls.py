@@ -11,7 +11,7 @@ urlpatterns = [
     #User and Session
     path('accounts/signup/', user_register, name="register"),
     path('logout/', CustomLogoutView.as_view(), name="logout"),
-    path('login/', login_view, name="login"),
+    path('accounts/login/', login_view, name="login"),
     path('about/', about, name="about"),
     #Profile    
     path('edit-profile/', ProfileUpdateView.as_view(), name="editar_perfil"),

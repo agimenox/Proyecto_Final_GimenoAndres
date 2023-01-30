@@ -115,3 +115,4 @@ def delete_user(request, id):
         sucess_url = reverse('list_users')
         return redirect(sucess_url)
 
+

@@ -1,16 +1,39 @@
 {% extends "home.html" %}
 
 {% block content %}
+<p>
+    <div class="row">
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h2><strong>Titulo: </strong> {{object.title}}</h2>
+                        <h3><strong>Subtitulo: </strong> {{object.subtitle}}</h3>
+                            {{object.body | safe }}
+                        <h5><strong>Autor: </strong>{{object.author}}</h5>
+                        <h5><strong>Fecha: </strong>{{object.date}}</h5>
+                        <h5><strong>Categoria: </strong>{{object.category}}</h5>
+                </div>
+            </div>
+        </div>
 
+    <div class="col-xl-6 col-lg-5">
+        <div class="card shadow mb-4">
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Photo</h6>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                        src="{{ blog.image.url }}" alt="...">
+                </div>
+            </div>
 
-<h2><strong>Group Name: </strong> {{object.title}}</h4>
-<h3><strong>Group Name: </strong> {{object.subtitle}}</h4>
-<p>{{object.body}}</p>
-<h2>{{object.author}}</h2>
-<h2>{{object.date}}</h2>
-<h2>{{object.category}}</h2>
-<img src="{{ blog.image.url }}">
-<br>
-<a href="{% url 'list_blogs' %}">Back</a>
+        </div>
+    </div>
+    <a href="{% url 'list_blogs' %}">Back</a>
+</div>
+
+</p>
 
 {% endblock content %}
