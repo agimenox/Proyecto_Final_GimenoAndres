@@ -13,33 +13,30 @@
       <div
         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">{{ blog.title }}</h6>
-        <div class="btn-group">
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Mas
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item active" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
+        <div class="dropdown no-arrow">
+          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+              aria-labelledby="dropdownMenuLink">
+              <div class="dropdown-header">Dropdown Header:</div>
+              {% if user.is_staff %}
+              <a class="dropdown-item" href="{% url 'edit_blog' blog.id %}">Editar</a>
+              <a class="dropdown-item" href="{% url 'delete_blog' blog.id %}">Borrar</a>
+              {% endif %}
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'detail_blog' blog.id %}">Leer mas</a>
           </div>
-        </div>
+      </div>
       </div>
     
       <div class="card shadow mb-4">
-        {{ blog.title }}<br>
-        {{ blog.author }}<br>
-        {{ blog.date }}<br>
+        <p><strong>Receta: </strong>{{ blog.title }}</p>
+        <p><strong>Autor: </strong>{{ blog.author }}</p>
+        <p><strong>Fecha: </strong>{{ blog.date }}</p>
         <img src="{{ blog.image.url }}" width="200" height="200">
       </div>
-      {% if user.is_staff %}
-      <a href="{% url 'edit_blog' blog.id %}">Editar</a>
-      <a href="{% url 'delete_blog' blog.id %}">Borrar</a>
-      {% endif %}
-      <a href="{% url 'detail_blog' blog.id %}">Leer mas...</a>
       </div>
     </div>
 {% endfor %}

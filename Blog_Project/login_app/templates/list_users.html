@@ -1,0 +1,51 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="#" class="m-0 font-weight-bold text-primary">Users</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Ultimo Login</th>
+                        <th>Email</th>
+  
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Ultimo Login</th>
+                        <th>Email</th>
+  
+                    </tr>
+                </tfoot>
+                <tbody>
+                  <ul>
+                      {% for user in users %}
+                    <tr>
+                      <td>{{ user.username }}</td>
+                      <td>{{ user.last_login }}</td>
+                      <td>{{ user.email }}</td>
+                      <td>
+                        <form action="{% url 'delete_user' user.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete"/>
+                        </form>
+                      </td>
+                    </tr>
+                        {% endfor %}
+                  </ul>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

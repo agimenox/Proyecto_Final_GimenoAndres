@@ -1,0 +1,46 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="#" class="m-0 font-weight-bold text-primary">Articulos</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+  
+                    </tr>
+                </tfoot>
+                <tbody>
+                  <ul>
+                      {% for blog in form %}
+                    <tr>
+                      <td>{{ blog.title }}</td>
+                      <td>{{ blog.author }}</td>
+                      <td>
+                        <a class="dropdown-item" href="{% url 'delete_blog' blog.id %}">Borrar</a>
+                        </form>
+                      </td>
+                    </tr>
+                        {% endfor %}
+                  </ul>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

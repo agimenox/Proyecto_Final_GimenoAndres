@@ -44,7 +44,7 @@ def user_register(request):
 
         if form.is_valid():
             form.save()  # Esto lo puedo usar porque es un model form
-            success_url = reverse('inicio')
+            success_url = reverse('home')
             return redirect(success_url)
     else:  # GET
         form = UserRegisterForm()
@@ -80,26 +80,6 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user
      
 
-'''
-def add_avatar(request):
-    if request.method == "POST":
-        form = AvatarForm(request.POST, request.FILES) # Aquí me llega toda la info del form html
-
-        if form.is_valid():
-            avatar = form.save()
-            avatar.user = request.user
-            avatar.save()
-            sucess_url = reverse('home')
-            return redirect(sucess_url)
-    else:  # GET
-        form = AvatarForm()
-    return render(
-        request=request,
-        template_name='avatar_form.html',
-        context={'form': form},
-    )
-'''
-
 def add_avatar(request):
     if request.method == 'POST':
         form = AvatarForm(request.POST, request.FILES)
@@ -111,4 +91,27 @@ def add_avatar(request):
     else:
         form = AvatarForm()
     return render(request, 'avatar_form.html', {'form': form})
+
+def show_contact(request):
+    return render(
+        request=request,
+        template_name='contact_page.html',
+    )
+
+def list_users(request):
+    cntxt = {
+        'users': User.objects.all()
+    }
+    return render(
+        request=request,
+        template_name='list_users.html',
+        context=cntxt,
+    ) 
+
+def delete_user(request, id):
+    user_to_delete = User.objects.get(id=id)
+    if request.method == "POST":
+        user_to_delete.delete()
+        sucess_url = reverse('list_users')
+        return redirect(sucess_url)
 

@@ -1,21 +1,42 @@
 {% extends "home.html" %}
 {%load static%}
 {% block content %}
+
+<a href="{% url 'create_blog' %}">Crear Nuevo Blog</a>
+<br>
+<hr>
+<div class="row">
 {% for blog in form %}
-<tr>
+<div class="col-xl-4 col-lg-5">
+  <div class="card shadow mb-4">
+    <div
+        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ blog.title }}</h6>
+        <div class="dropdown no-arrow">
+          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+              aria-labelledby="dropdownMenuLink">
+              <div class="dropdown-header">Dropdown Header:</div>
+              <a class="dropdown-item" href="{% url 'edit_blog' blog.id %}">Editar</a>
+              <a class="dropdown-item" href="{% url 'delete_blog' blog.id %}">Borrar</a>
+              <a class="dropdown-item" href="{% url 'detail_blog' blog.id %}">Leer mas</a>
+            </div>
+          </div>
+          </div>
+          <div class="card shadow mb-4">
   {{ blog.title }}<br>
   {{ blog.author }}<br>
   {{ blog.date }}<br>
 
   <img src="{{ blog.image.url }}" width="200" height="200">
-  <br>
+</div>
+</div>
+</div>
 
-  <a href="{% url 'edit_blog' blog.id %}">Editar</a>
-  <a href="{% url 'delete_blog' blog.id %}">Borrar</a>
-
-  <a href="{% url 'detail_blog' blog.id %}">Leer mas...</a>
-  <br><br><br>
-</tr>
 
 {% endfor %}
+</div>
 {% endblock content %}

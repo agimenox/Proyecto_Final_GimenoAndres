@@ -10,6 +10,7 @@ urlpatterns = [
     path('delete-blog/<int:pk>/', BlogDeleteView.as_view(), name="delete_blog"),
     path('pages/<int:pk>/', BlogDetailView.as_view(), name="detail_blog"),
     path('own-blogs/<int:id>/',views.get_own_blog, name="own_blogs"),
+    path('get-blogs/',views.get_all_blog, name="get_blogs"),
 
 
 ]

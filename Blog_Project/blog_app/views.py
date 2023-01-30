@@ -47,3 +47,10 @@ def get_own_blog(request,id):
         context={'form': form},
     )
 
+def get_all_blog(request):
+    contx = Blog.objects.all()
+    return render(
+        request=request,
+        template_name='list_all_blogs.html',
+        context={'form': contx},
+    )
