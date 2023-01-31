@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
 
-    
+    path('', views.index),
     path('home/', home, name="home"),
     #User and Session
     path('accounts/signup/', user_register, name="register"),
@@ -19,6 +19,7 @@ urlpatterns = [
     path('contact/', views.show_contact, name="show_contact"),
     path('list-users/', views.list_users, name="list_users"),
     path('delete-user/<int:id>', views.delete_user, name='delete_user'),
+    path('change_password/', change_password, name='change_password'),
 
 ]
 

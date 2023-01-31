@@ -9,6 +9,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
 from login_app.models import Avatar
+from django.http import HttpResponseRedirect
+from django.views.generic import DetailView
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 
@@ -115,4 +119,17 @@ def delete_user(request, id):
         sucess_url = reverse('list_users')
         return redirect(sucess_url)
 
+def index(request):
+    return HttpResponseRedirect("home")
 
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('home')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_pass.html', {'form': form})

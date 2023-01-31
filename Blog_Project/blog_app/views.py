@@ -7,13 +7,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 class BlogCreateView(LoginRequiredMixin,CreateView):
     model = Blog
-    fields = ['title', 'subtitle','body','author','date','image','category',]
+    fields = ['title', 'subtitle','body','image','category',]
     success_url = reverse_lazy('list_blogs')
     template_name = "create_blog.html"
     
     def form_valid(self, form):
         Blog = form.save(commit=False)
         Blog.owner = self.request.user
+        Blog.author = self.request.user
         #article.save()  # This is redundant, see comments.
         return super(BlogCreateView, self).form_valid(form)
 
