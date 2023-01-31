@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('login_app.urls')),
     path('', include('blog_app.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')), # The CKEditor path
+    path('', include('chatp_app.urls')),
     
 ]
 

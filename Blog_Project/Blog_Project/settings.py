@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'login_app',
     'blog_app',
     'ckeditor',
+    'chatp_app',
 ]
 
 MIDDLEWARE = [
